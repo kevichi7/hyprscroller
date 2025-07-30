@@ -48,6 +48,10 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle) {
     HyprlandAPI::addConfigValue(PHANDLE, "plugin:scroller:center_active_column", Hyprlang::INT{0});
     // 0, 1
     HyprlandAPI::addConfigValue(PHANDLE, "plugin:scroller:overview_scale_content", Hyprlang::INT{1});
+    // 0, 1
+    HyprlandAPI::addConfigValue(PHANDLE, "plugin:scroller:overview_background", Hyprlang::INT{0});
+    // 0, 1
+    HyprlandAPI::addConfigValue(PHANDLE, "plugin:scroller:overview_background_blur", Hyprlang::INT{0});
     // a list of values used as standard widths for cyclesize in row mode, and in the cycling order
     // available options: oneeighth, onesixth, onefourth, onethird, threeeighths, onehalf,
     // fiveeighths, twothirds, threequarters, fivesixths, seveneighths, one
