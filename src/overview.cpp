@@ -252,15 +252,7 @@ static PHLMONITOR hookGetMonitorFromVector(void *thisptr,
   return pBestMon;
 }
 
-static void hookRenderMonitor(void *thisptr, PHLMONITOR monitor) {    
-  static auto *const *overview_background =
-      (Hyprlang::INT *const *)HyprlandAPI::getConfigValue(
-          PHANDLE, "plugin:scroller:overview_background")
-          ->getDataStaticPtr();
-  static auto *const *overview_background_blur =
-      (Hyprlang::INT *const *)HyprlandAPI::getConfigValue(
-          PHANDLE, "plugin:scroller:overview_background_blur")
-          ->getDataStaticPtr();
+static void hookRenderMonitor(void *thisptr, PHLMONITOR monitor) {
 
   WORKSPACEID workspace = monitor->activeSpecialWorkspaceID();
   if (!workspace)
@@ -269,9 +261,6 @@ static void hookRenderMonitor(void *thisptr, PHLMONITOR monitor) {
   float scale = monitor->m_scale;
   if (overview_enabled) {
     monitor->m_scale *= overviews->get_scale(workspace);
-  }
-  if (**overview_background) {
-      g_pHyprRenderer->renderWallpaper(monitor, **overview_background_blur != 0);
   }
   ((origRenderMonitor)(g_pRenderMonitorHook->m_pOriginal))(thisptr, monitor);
   if (overview_enabled) {
