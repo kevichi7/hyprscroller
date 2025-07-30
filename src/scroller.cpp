@@ -685,6 +685,10 @@ void ScrollerLayout::onEnable() {
     // Register dynamic callbacks for events
     workspaceHookCallback = HyprlandAPI::registerCallbackDynamic(PHANDLE, "workspace", [&](void* /* self */, SCallbackInfo& /* info */, std::any param) {
         auto WORKSPACE = std::any_cast<PHLWORKSPACE>(param);
+        for (auto row = rows.first(); row != nullptr; row = row->next()) {
+            if (row->data()->is_overview())
+                row->data()->toggle_overview();
+        }
         post_event(WORKSPACE->m_iID, "mode");
         post_event(WORKSPACE->m_iID, "overview");
     });
